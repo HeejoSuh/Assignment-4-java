@@ -53,8 +53,6 @@ public class TriangleCalculator {
 						//insert into dictionary
 						inputValues.add(inputNumber);
 					}	
-					//need to reset to default
-					input = "";
 					
 				}catch (IllegalArgumentException x) { 
 					System.out.println("Insert a number!");
