@@ -24,7 +24,7 @@ public class TriangleCalculator {
 		//instantiate triangle given the input and calculate values
 		
 		Scanner scanner = new Scanner(System.in);
-		String input = "", choice = "";
+		String input = "";
 		
         //Hashtable<String, Double> inputValues = new Hashtable<String, Double>();
 		//Map<String, Double> inputValues = new HashMap<String, Double>();
