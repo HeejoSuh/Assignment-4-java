@@ -14,9 +14,14 @@ public class Triangle{
 	
 	//Private Fields
 	
-	private double _sideA;
-	private double _sideB;
-	private double _sideC;
+	private double _sideA = 0;
+	private double _sideB = 0;
+	private double _sideC = 0;
+
+
+	private double _angleA = 0;
+	private double _angleB = 0;
+	private double _angleC = 0;
 	
 
 	private double _semiperimeter;
@@ -27,20 +32,145 @@ public class Triangle{
 	
 
 	
-	//CONSTRUCTOR ----------------------------------------------------------------------------------
-	public Triangle(double a, double b, double c){
+	public Triangle(String typeA, double a, String typeB, double b, String typeC, double c){
 		//Pass parameters
 		
 		
-		_sideA = a;
-		_sideB = b;
-		_sideC = c;
+		//set input Values
+		setValues(typeA, a);
+		setValues(typeB, b);
+		setValues(typeC, c);
 		
-		_semiperimeter = 0.5 * (this.getPerimeter());
 		
-	} 
+		while (_sideA==0 || _sideB==0 || _sideC==0 || _angleA==0 || _angleB==0 || _angleC==0 ) {
+			//loop until every value is put
+			
+			//SIDES---------------------------------------------
+			//SIDE A
+			if (_sideA==0) {
 
+				if (_angleA!=0 &&_sideB!=0 && _sideC!=0) {
+					_sideA =  Math.pow((_sideB*_sideB + _sideC*_sideC - 4*_sideB*_sideC*Math.cos(Math.toRadians(_angleA))),0.5);
+				}	
+				if (_sideB!=0 && _angleB!=0 && _angleA!=0){
+					_sideA= (_sideB*Math.sin(Math.toRadians(_angleA)))/Math.sin(Math.toRadians(_angleB));
+				}
+				if (_sideC!=0 && _angleC!=0 && _angleA!=0){
+						_sideA = (_sideC*Math.sin(Math.toRadians(_angleA)))/Math.sin(Math.toRadians(_angleC));
+				}
+			}
+			//SIDE B
+			if (_sideB==0) {
+
+				if (_angleB!=0 &&_sideA!=0 && _sideC!=0) {
+					_sideB =  Math.pow((_sideA*_sideA + _sideC*_sideC - 4*_sideA*_sideC*Math.cos(Math.toRadians(_angleB))),0.5);
+				}
+				if (_sideA!=0 && _angleA!=0 && _angleB!=0){
+					_sideB= (_sideA*Math.sin(Math.toRadians(_angleB)))/Math.sin(Math.toRadians(_angleA));
+				}
+				if (_sideC!=0 && _angleC!=0 && _angleB!=0){
+					_sideB= (_sideC*Math.sin(Math.toRadians(_angleB)))/Math.sin(Math.toRadians(_angleC));
+				}
+			}
+			//SIDE C
+			if (_sideC==0) {
+				
+				if (_angleC!=0 && _sideA!=0 && _sideB!=0) {
+					_sideC = Math.pow((_sideA*_sideA + _sideB*_sideB - 4*_sideA*_sideB*Math.cos(Math.toRadians(_angleC))),0.5);
+				}
+				if (_sideA!=0 && _angleA!=0 && _angleC!=0){
+					_sideC = (_sideA*Math.sin(Math.toRadians(_angleC)))/Math.sin(Math.toRadians(_angleA));
+				}
+				if (_sideB!=0 && _angleB!=0 && _angleC!=0){
+					_sideC = (_sideB*Math.sin(Math.toRadians(_angleC)))/Math.sin(Math.toRadians(_angleB));
+				}		
+			}
+			
+			//ANGLES---------------------------------------------
+			//ANGLE A
+			if (_angleA==0) {
+				if (_sideB!=0 && _angleB!=0 && _sideA!=0){
+					_angleA = (Math.sin(Math.toRadians(_angleB))*_sideA)/_sideB;
+				}
+				if (_sideC!=0 && _angleC!=0 && _sideC!=0){
+						_angleA = (Math.sin(Math.toRadians(_angleC))*_sideA)/_sideC;
+				}
+				if (_angleB!=0 && _angleC!=0) {
+					_angleA = 180- _angleC-_angleB;
+				}
+				if (_sideA!=0 && _sideB!=0 && _sideC!=0) {
+					_angleA = Math.acos((_sideB*_sideB + _sideC*_sideC - _sideA*_sideA)/(2*_sideB*_sideC)) * (180/Math.PI);
+				}
+			}
+			//ANGLE B
+			if (_angleB==0) {
+
+				if (_sideA!=0 && _angleA!=0 && _sideB!=0){
+					_angleB = (Math.sin(Math.toRadians(_angleA))*_sideB)/_sideA;
+				}
+				if (_sideC!=0 && _angleC!=0 && _sideB!=0){
+					_angleB = (Math.sin(Math.toRadians(_angleC))*_sideB)/_sideC;
+				}
+				if (_angleA!=0 && _angleC!=0) {
+					_angleB = 180- _angleA-_angleC;
+				}
+				if (_sideA!=0 && _sideB!=0 && _sideC!=0) {
+					_angleB = Math.acos((_sideA*_sideA + _sideC*_sideC - _sideA*_sideA)/(2*_sideA*_sideC)) * (180/Math.PI);
+				}
+			}
+			//ANGLE C
+			if (_angleC==0) {
+				
+				if (_angleA!=0 && _sideA!=0 && _sideC!=0){
+					_angleC = (Math.sin(Math.toRadians(_angleA))*_sideC)/_sideA;
+				}
+				if (_angleB!=0 && _sideB!=0 && _sideC!=0){
+					_angleC = (Math.sin(Math.toRadians(_angleB))*_sideC)/_sideB;
+				}	
+				if (_angleA!=0 && _angleB!=0) {
+					_angleC = 180- _angleA-_angleB;
+				}
+				if (_sideA!=0 && _sideB!=0 && _sideC!=0) {
+					_angleC = Math.acos((_sideB*_sideB + _sideA*_sideA - _sideA*_sideA)/(2*_sideB*_sideA)) * (180/Math.PI);
+				}
+			}
+		}
+		
+		//round each value
+		_sideA = round(_sideA);
+		_sideB = round(_sideB);
+		_sideC = round(_sideC);
+		_angleA = round(_angleA);
+		_angleB = round(_angleB);
+		_angleC = round(_angleC);
+		
+		_semiperimeter = 0.5 * (getPerimeter());
+		
+	} 		
 	
+
+	//TRIANGLE info set------------------------------------------------------------------------------------------
+	protected void setValues(String inputType, double inputDouble){
+		//sets the number as the appropriate variable value
+		if (inputType.equals("SA")) {
+			_sideA = inputDouble;
+		}
+		if (inputType.equals("SB")) {
+			_sideB = inputDouble;
+		}
+		if (inputType.equals("SC")) {
+			_sideC = inputDouble;
+		}
+		if (inputType.equals("AA")) {
+			_angleA = inputDouble;
+		}
+		if (inputType.equals("AB")) {
+			_angleB = inputDouble;
+		}
+		if (inputType.equals("AC")) {
+			_angleC = inputDouble;
+		}
+	}	
 	
 	
 	//TRIANGLE VALID------------------------------------------------------------------------------------------
@@ -66,8 +196,8 @@ public class Triangle{
 		
 		boolean triangleValidity;
 		
-		if (_sideA + _sideB > _sideC && _sideA + _sideC > _sideB && _sideB + _sideC > _sideA){
-			//sum of two sides are greater than the other
+		if ((_angleA+_angleB+_angleC)==180){
+			//sum of angles is equal to 180
 			triangleValidity = true;
 			
 		} else {
@@ -95,8 +225,7 @@ public class Triangle{
 		//calculates and returns the triangle type
 		
 		//Math.pow(side,2)
-		if ((_sideA*_sideA)==(_sideB*_sideB)+(_sideC*_sideC) || (_sideB*_sideB)==(_sideA*_sideA)+(_sideC*_sideC) || (_sideC*_sideC)==(_sideA*_sideA)+(_sideB*_sideB)){
-		//if (Math.pow(_sideA,2)==Math.pow(_sideB,2)+Math.pow(_sideC,2) || Math.pow(_sideB,2)==Math.pow(_sideA,2)+Math.pow(_sideC,2) || Math.pow(_sideC,2)==Math.pow(_sideA,2)+Math.pow(_sideB,2)){
+		if (_angleA == 90 || _angleB == 90 || _angleC == 90){
 			//right angle
 			_typeName = "Right-angle";
 			
@@ -154,3 +283,4 @@ public class Triangle{
 	//----------------------------------------------------------------------------------------------------
 	
 }//closing for class
+
