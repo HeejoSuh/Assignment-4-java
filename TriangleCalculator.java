@@ -13,6 +13,7 @@
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 //****************************************************************************
@@ -24,48 +25,80 @@ public class TriangleCalculator {
 		//instantiate triangle given the input and calculate values
 		
 		Scanner scanner = new Scanner(System.in);
-		String input = "";
-		
-        //Hashtable<String, Double> inputValues = new Hashtable<String, Double>();
-		//Map<String, Double> inputValues = new HashMap<String, Double>();
-		
-		//create list
-		List<Double> inputValues = new ArrayList<>();
+		String input = "", choice = "";
+		int angleCount = 0;
 
-		
+		//create list
+       	HashMap<String, Double> inputValues = new HashMap<String, Double>();
+		List<String> inputTypes = new ArrayList<>();
+
+		System.out.println("\nSA: side A, 	SB: side B, 	SC: side C\nAA: angle A, 	AB: angle B, 	AC: angle C\n----------------------------------------------------");
 		//--------------------------------------------------------------------------
 		//Get correct inputs -------------------------------------------------------
-		while (inputValues.size() < 2) {
+		while (inputTypes.size() < 3) {
 			//not have exited program
 			
-			//get number----------------------------------------
-			for(int count = 0 ; count<3; count++) {
-				//see if input is a number
-				System.out.println("\nInsert the length of a side: ");
+			//----------------------------------------
+			while (choice=="") {
+				//get choice
+				System.out.println("\nWhat value would you like to put in?");
+				choice = scanner.nextLine();
+				
+				if (inputValues.get(choice)==null) {
+					//check if overlapping input
+					//inputValues.get(choice);
+					if (String.valueOf(choice.charAt(0))=="A") {
+						//check for angle count
+						if (angleCount == 2) {
+							//if past maximum
+							System.out.println("ERROR: You can't put in more than two angles!");
+							choice="";
+						} else {
+							//add angle count
+							angleCount= angleCount+1;
+						}
+					} else if (!choice.equals("SA") && !choice.equals("SB") && !choice.equals("SC") && !choice.equals("AA") && !choice.equals("AB") && !choice.equals("AC")) {
+						//if invalid input
+						System.out.println("ERROR: Invalid input!");
+						choice="";
+					}
+				}else { 
+					System.out.println("ERROR: Overlapping input!");
+					choice="";
+				}
+			}
+			
+			
+			//----------------------------------------
+			while (choice!="") {
+				//get input
+				System.out.println("Insert the value: ");
 				
 				try {
 					//check if response is a number
 					input = scanner.nextLine();
 					double inputNumber = Double.valueOf(input);
 					if (inputNumber < 0 ) {
-						System.out.println("Insert a valid number!");
+						System.out.println("ERROR: Insert a valid number!");
 					} else {
 						//insert into dictionary
-						inputValues.add(inputNumber);
+						inputValues.put(choice, inputNumber);
+						inputTypes.add(choice);
+						choice="";
 					}	
 					
 				}catch (IllegalArgumentException x) { 
-					System.out.println("Insert a number!");
+					System.out.println("ERROR: Insert a number!");
 				}
 			}
 		} 
 		
 		
-		
+
 		//instantiate Triangle
-		Triangle customTriangle = new Triangle(inputValues.get(0), inputValues.get(1), inputValues.get(2));
+		Triangle customTriangle = new Triangle(inputTypes.get(0), inputValues.get(inputTypes.get(0)), inputTypes.get(1), inputValues.get(inputTypes.get(1)), inputTypes.get(2), inputValues.get(inputTypes.get(2)));
 		//check validity
-		if (customTriangle.getTriangleValidity() == true) {
+		if (customTriangle.IsTriangleValid() == true) {
 			//if valid triangle
 
 			//Name
@@ -78,7 +111,7 @@ public class TriangleCalculator {
 			
 		} else {
 			//error
-			System.out.println("Invalid triangle!");
+			System.out.println("\nInvalid triangle!");
 			
 		}
 			
