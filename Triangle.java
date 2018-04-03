@@ -112,6 +112,17 @@ public class Triangle{
 				_angleC = Math.acos((_sideB*_sideB + _sideA*_sideA - _sideA*_sideA)/(2*_sideB*_sideA)) * (180/Math.PI);
 			}
 			
+			
+			//180
+			if (_angleA!=0 && _angleB!=0) {
+				_angleC = 180 - _angleA - _angleB;
+			}
+			if (_angleB!=0 && _angleC!=0) {
+				_angleA = 180 - _angleB - _angleC;
+			}
+			if (_angleA!=0 && _angleC!=0) {
+				_angleB = 180 - _angleA - _angleC;
+			}
 		}
 		
 		//round each value
