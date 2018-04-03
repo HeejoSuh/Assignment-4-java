@@ -253,7 +253,7 @@ public class Triangle{
 	public void printAreaOfTheCircumcircleOfTheTriangle(){
 		//calculates and returns the circumcircle
 		//radius = (a+b+c)/(4*Area)
-		double radiusOfCircumcircleOfTheTriangle = _sideA*_sideB*_sideC / (4 * _area);
+		double radiusOfCircumcircleOfTheTriangle = _sideA*_sideB*_sideC / (4 * _semiperimeter);
 		double areaOfCircumcircleOfTheTriangle = Math.PI * Math.pow(radiusOfCircumcircleOfTheTriangle, 2);
 		
 		System.out.println("The area of the circumcircle of the triangle: " + round(areaOfCircumcircleOfTheTriangle));
