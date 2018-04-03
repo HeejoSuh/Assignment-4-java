@@ -73,10 +73,9 @@ public class TriangleCalculator {
 			while (choice!="") {
 				//get input
 				System.out.println("Insert the value: ");
-				
+				input = scanner.nextLine();
 				try {
 					//check if response is a number
-					input = scanner.nextLine();
 					double inputNumber = Double.valueOf(input);
 					if (inputNumber < 0 ) {
 						System.out.println("ERROR: Insert a valid number!");
