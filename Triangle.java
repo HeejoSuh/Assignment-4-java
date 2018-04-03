@@ -14,10 +14,11 @@ public class Triangle{
 	
 	//Private Fields
 	
-	private static double _sideA;
-	private static double _sideB;
-	private static double _sideC;
+	private double _sideA;
+	private double _sideB;
+	private double _sideC;
 	
+
 	private double _semiperimeter;
 	private double _perimeter;
 	
@@ -29,6 +30,7 @@ public class Triangle{
 	//CONSTRUCTOR ----------------------------------------------------------------------------------
 	public Triangle(double a, double b, double c){
 		//Pass parameters
+		
 		
 		_sideA = a;
 		_sideB = b;
@@ -42,14 +44,14 @@ public class Triangle{
 	
 	
 	//TRIANGLE VALID------------------------------------------------------------------------------------------
-	private double round(double inputDouble){
+	protected double round(double inputDouble){
 		//returns rounded number
 		return Double.valueOf(String.format("%.2f", inputDouble));
 	}	
 	
 
 	//PERIMETER--------------------------------------------------------------------------------------------------
-	private double getPerimeter(){
+	protected double getPerimeter(){
 		//calculates and returns perimeter
 		_perimeter = _sideA + _sideB +_sideC;
 		return _perimeter;
@@ -59,7 +61,7 @@ public class Triangle{
 	
 	
 	//TRIANGLE VALID------------------------------------------------------------------------------------------
-	protected boolean getTriangleValidity(){
+	protected boolean IsTriangleValid(){
 		//check if triangle is valid or not
 		
 		boolean triangleValidity;
@@ -152,5 +154,3 @@ public class Triangle{
 	//----------------------------------------------------------------------------------------------------
 	
 }//closing for class
-
-
