@@ -185,8 +185,8 @@ public class Triangle{
 		
 		boolean triangleValidity;
 		
-		if ((_angleA+_angleB+_angleC)==180){
-			//sum of angles is equal to 180
+		if ((_angleA+_angleB+_angleC)==180 && ((_angleA+_angleB)>_angleC  && (_angleA+_angleC)>_angleB  && (_angleB+_angleC)>_angleA)){
+			//sum of angles is equal to 180 & sum of two sides are greater than the other
 			triangleValidity = true;
 			
 		} else {
