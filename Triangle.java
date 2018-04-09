@@ -3,8 +3,8 @@
  * Created on: Mar 2018
  * Created for: learning
  * 
- * This class is a 'blueprint' for a stack
- * 
+ * This class is a 'blueprint' for Triangle
+ * Calculates and returns values of given triangles
  * 
  ****************************************************************************/
 
@@ -25,7 +25,6 @@ public class Triangle{
 	
 
 	private double _semiperimeter;
-	private double _perimeter;
 	
 	private double _area;
 	private String _typeName;
