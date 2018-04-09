@@ -1,4 +1,5 @@
-/****************************************************************************
+
+ /****************************************************************************
  *
  * Created by: Heejo Suh
  * Created on: Mar 2018
@@ -42,11 +43,12 @@ public class TriangleCalculator {
 			while (choice=="") {
 				//get choice
 				System.out.println("\nWhat value would you like to put in?");
-				choice = scanner.nextLine();
+				choice = scanner.nextLine().toUpperCase();
 				
 				if (inputValues.get(choice)==null) {
 					//check if overlapping input
 					//inputValues.get(choice);
+					//if (String.valueOf(choice.charAt(0))=="A") {
 					if (String.valueOf(choice.charAt(0))=="A") {
 						//check for angle count
 						if (angleCount == 2) {
@@ -73,9 +75,10 @@ public class TriangleCalculator {
 			while (choice!="") {
 				//get input
 				System.out.println("Insert the value: ");
-				input = scanner.nextLine();
+				
 				try {
 					//check if response is a number
+					input = scanner.nextLine();
 					double inputNumber = Double.valueOf(input);
 					if (inputNumber < 0 ) {
 						System.out.println("ERROR: Insert a valid number!");
