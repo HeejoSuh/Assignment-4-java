@@ -41,99 +41,135 @@ public class Triangle{
 		setValues(typeB, b);
 		setValues(typeC, c);
 		
-		
 		while (_sideA==0 || _sideB==0 || _sideC==0 || _angleA==0 || _angleB==0 || _angleC==0 ) {
 			//loop until every value is put
 			
 			
-			//pythagorean
-			if (_angleA!=0 &&_sideB!=0 && _sideC!=0) {
-				_sideA =  Math.pow((_sideB*_sideB + _sideC*_sideC - 4*_sideB*_sideC*Math.cos(Math.toRadians(_angleA))),0.5);
-			}
-			if (_angleB!=0 &&_sideA!=0 && _sideC!=0) {
-				_sideB =  Math.pow((_sideA*_sideA + _sideC*_sideC - 4*_sideA*_sideC*Math.cos(Math.toRadians(_angleB))),0.5);
-			}
-			if (_angleC!=0 && _sideA!=0 && _sideB!=0) {
-				_sideC = Math.pow((_sideA*_sideA + _sideB*_sideB - 4*_sideA*_sideB*Math.cos(Math.toRadians(_angleC))),0.5);
-			}
-			
-			
-			//sin law
-			//a/sinA  = b/sinB
-			// b = (a * sinB)/sinA
-			// B = acos(b * sinA)/a
-			if (_sideA!=0 && _angleA!=0) {
-				if (_angleB!=0){
-					_sideB= (_sideA*Math.sin(Math.toRadians(_angleB)))/Math.sin(Math.toRadians(_angleA));
+			//SIDE A-----------------------------------------------------------
+			if (_sideA==0) {
+				//pythagorean
+				if (_angleA!=0 &&_sideB!=0 && _sideC!=0) {
+					_sideA =  Math.pow(_sideB*_sideB + _sideC*_sideC - 4*_sideB*_sideC*cos(_angleA),0.5);
 				}
-				if (_sideB!=0){
-					_angleB = Math.asin((Math.sin(Math.toRadians(_angleA))*_sideB)/_sideA);
+				//sin law
+				if (_sideB!=0 && _angleB!=0 && _angleA!=0){
+					_sideA= (_sideB*sin(_angleA))/sin(_angleB);
 				}
-				if (_angleC!=0){
-					_sideC= (_sideA*Math.sin(Math.toRadians(_angleC)))/Math.sin(Math.toRadians(_angleA));
-				}
-				if (_sideC!=0){
-					_angleC = Math.asin((Math.sin(Math.toRadians(_angleA))*_sideC)/_sideA);
-				}
-			}
-			if (_sideB!=0 && _angleB!=0) {
-				if (_angleA!=0){
-					_sideA= (_sideB*Math.sin(Math.toRadians(_angleA)))/Math.sin(Math.toRadians(_angleB));
-				}
-				if (_sideA!=0){
-					_angleA = Math.asin((Math.sin(Math.toRadians(_angleB))*_sideA)/_sideB);
-				}
-				if (_angleC!=0){
-					_sideC= (_sideB*Math.sin(Math.toRadians(_angleC)))/Math.sin(Math.toRadians(_angleB));
-				}
-				if (_sideC!=0){
-					_angleC = Math.asin((Math.sin(Math.toRadians(_angleB))*_sideC)/_sideB);
-				}
-			}
-			if (_sideC!=0 && _angleC!=0) {
-				if (_angleB!=0){
-					_sideB= (_sideC*Math.sin(Math.toRadians(_angleB)))/Math.sin(Math.toRadians(_angleC));
-				}
-				if (_sideB!=0){
-					_angleB = Math.asin((Math.sin(Math.toRadians(_angleC))*_sideB)/_sideC);
-				}
-				if (_angleA!=0){
-					_sideA= (_sideC*Math.sin(Math.toRadians(_angleA)))/Math.sin(Math.toRadians(_angleC));
-				}
-				if (_sideA!=0){
-					_angleA = Math.asin((Math.sin(Math.toRadians(_angleC))*_sideA)/_sideC);
+				if (_sideC!=0 && _angleC!=0 && _angleA!=0){
+					_sideA= (_sideC*sin(_angleA))/sin(_angleC);
 				}
 			}
 			
-			//cos law
-			if (_sideA!=0 && _sideB!=0 && _sideC!=0) {
-				_angleA = Math.acos((_sideB*_sideB + _sideC*_sideC - _sideA*_sideA)/(2*_sideB*_sideC)) * (180/Math.PI);
-				_angleB = Math.acos((_sideA*_sideA + _sideC*_sideC - _sideA*_sideA)/(2*_sideA*_sideC)) * (180/Math.PI);
-				_angleC = Math.acos((_sideB*_sideB + _sideA*_sideA - _sideA*_sideA)/(2*_sideB*_sideA)) * (180/Math.PI);
+			//SIDE B-----------------------------------------------------------
+			if (_sideB==0) {	
+				//pythagorean
+				if (_angleB!=0 &&_sideA!=0 && _sideC!=0) {
+					_sideB =  Math.pow((_sideA*_sideA + _sideC*_sideC - 4*_sideA*_sideC*cos(_angleB)),0.5);
+				}
+				//sin law
+				if (_sideA!=0 && _angleA!=0 && _angleB!=0){
+					_sideB= (_sideA*sin(_angleB))/sin(_angleA);
+				}
+				if (_sideC!=0 && _angleC!=0 && _angleB!=0){
+					_sideB= (_sideC*sin(_angleB))/sin(_angleC);
+				}
+			}
+							
+			//SIDE C-----------------------------------------------------------
+			if (_sideC==0) {	
+				//pythagorean
+				if (_angleC!=0 && _sideA!=0 && _sideB!=0) {
+					_sideC = Math.pow((_sideA*_sideA + _sideB*_sideB - 4*_sideA*_sideB*cos(_angleC)),0.5);
+				}
+				//sin law
+				if (_sideA!=0 && _angleA!=0 && _angleC!=0){
+					_sideC= (_sideA*sin(_angleC))/sin(_angleA);
+				}
+				if (_sideB!=0 && _angleB!=0 && _angleC!=0){
+					_sideC= (_sideB*sin(_angleC))/sin(_angleB);
+				}
 			}
 			
 			
-			//180
-			if (_angleA!=0 && _angleB!=0) {
-				_angleC = 180 - _angleA - _angleB;
+			//ANGLE A-----------------------------------------------------------
+			if (_angleA == 0) {
+				//180
+				if (_angleB!=0 && _angleC!=0) {
+					_angleA = 180 - _angleB - _angleC;
+				}
+				//sin law
+				if (_sideB!=0 && _angleB!=0 && _sideA!=0){
+					_angleA = aSin((sin(_angleB)*_sideA)/_sideB);
+				}
+				if (_sideC!=0 && _angleC!=0 && _sideA!=0){
+					_angleA =aSin((sin(_angleC)*_sideA)/_sideC);
+				}
+				//cos law
+				if (_sideA!=0 && _sideB!=0 && _sideC!=0) {
+					_angleA = cos(((_sideB*_sideB) + (_sideC*_sideC) - (_sideA*_sideA))/(2*(_sideB*_sideC))) ;
+				}
 			}
-			if (_angleB!=0 && _angleC!=0) {
-				_angleA = 180 - _angleB - _angleC;
+			//ANGLE B-----------------------------------------------------------
+			if (_angleB == 0) {
+				//180
+				if (_angleA!=0 && _angleC!=0) {
+					_angleB = 180 - _angleA - _angleC;
+				}
+				//sin law
+				if (_sideA!=0 && _angleA!=0 && _sideB!=0){
+						_angleB = aSin((sin(_angleA)*_sideB)/_sideA);
+				}
+				if (_sideC!=0 && _angleC!=0 && _sideB!=0){
+						_angleB = aSin((sin(_angleC)*_sideB)/_sideC);
+				}
+				//cos law
+				if (_sideA!=0 && _sideB!=0 && _sideC!=0) {
+					_angleB = cos((_sideA*_sideA + _sideC*_sideC - _sideB*_sideB)/(2*_sideA*_sideC)) ;
+				}
 			}
-			if (_angleA!=0 && _angleC!=0) {
-				_angleB = 180 - _angleA - _angleC;
+			
+			//ANGLE C-----------------------------------------------------------
+			if (_angleC == 0) {
+				//180
+				if (_angleA!=0 && _angleB!=0) {
+					_angleC = 180 - _angleA - _angleB;
+				}
+				//sin law
+				if (_sideA!=0 && _angleA!=0 && _sideC!=0){
+						_angleC = aSin((sin(_angleA)*_sideC)/_sideA);
+				}
+				if (_sideB!=0 && _angleB!=0 && _sideC!=0){
+					_angleC = aSin((sin(_angleB)*_sideC)/_sideB);
+				}
+				//cos law
+				if (_sideA!=0 && _sideB!=0 && _sideC!=0) {
+					_angleC = cos((_sideB*_sideB + _sideA*_sideA - _sideC*_sideC)/(2*_sideB*_sideA));
+				}
 			}
+			
 		}
+		
 		
 		//round each value
 		_sideA = round(_sideA);
 		_sideB = round(_sideB);
 		_sideC = round(_sideC);
-		_angleA = round(_angleA);
-		_angleB = round(_angleB);
-		_angleC = round(_angleC);
 		
-		_semiperimeter = 0.5 * (getPerimeter());
+		double toDegree = (180/Math.PI);
+		
+		_angleA = round(_angleA * toDegree);
+		_angleB = round(_angleB * toDegree);
+		_angleC = round(_angleC * toDegree);
+		
+		_semiperimeter = 0.5 * (_sideA + _sideB +_sideC);
+		
+		
+		System.out.println(_angleA);
+		System.out.println(_angleB);
+		System.out.println(_angleC);
+		System.out.println(_sideA);
+		System.out.println(_sideB);
+		System.out.println(_sideC);
 		
 	} 		
 	
@@ -160,7 +196,7 @@ public class Triangle{
 			_angleC = inputDouble;
 		}
 	}	
-	
+
 	
 	//TRIANGLE VALID------------------------------------------------------------------------------------------
 	protected double round(double inputDouble){
@@ -169,15 +205,30 @@ public class Triangle{
 	}	
 	
 
-	//PERIMETER--------------------------------------------------------------------------------------------------
-	protected double getPerimeter(){
-		//calculates and returns perimeter
-		_perimeter = _sideA + _sideB +_sideC;
-		return _perimeter;
-	}
-	
-	
-	
+	//SIN------------------------------------------------------------------------------------------
+	protected double sin(double inputDouble){
+		//returns rounded number
+		return Math.sin(Math.toRadians(inputDouble));
+	}	
+
+	//COS------------------------------------------------------------------------------------------
+	protected double cos(double inputDouble){
+		//returns rounded number
+		return Math.cos(Math.toRadians(inputDouble));
+	}	
+
+	//aSIN------------------------------------------------------------------------------------------
+	protected double aSin(double inputDouble){
+		//returns rounded number
+		return Math.asin(Math.toRadians(inputDouble));
+	}	
+
+	//aCOS------------------------------------------------------------------------------------------
+	protected double aCos(double inputDouble){
+		//returns rounded number
+		return Math.acos(Math.toRadians(inputDouble));
+	}	
+
 	
 	//TRIANGLE VALID------------------------------------------------------------------------------------------
 	protected boolean IsTriangleValid(){
@@ -185,8 +236,8 @@ public class Triangle{
 		
 		boolean triangleValidity;
 		
-		if ((_angleA+_angleB+_angleC)==180 && ((_angleA+_angleB)>_angleC  && (_angleA+_angleC)>_angleB  && (_angleB+_angleC)>_angleA)){
-			//sum of angles is equal to 180 & sum of two sides are greater than the other
+		if ((_angleA+_angleB+_angleC)==180 && ((_sideB +_sideC)>_sideA && (_sideA +_sideC)>_sideB && (_sideA + _sideB)>_sideC)){
+			//sum of angles is equal to 180 & sum of two sides are longer than the other
 			triangleValidity = true;
 			
 		} else {
@@ -272,4 +323,3 @@ public class Triangle{
 	//----------------------------------------------------------------------------------------------------
 	
 }//closing for class
-
